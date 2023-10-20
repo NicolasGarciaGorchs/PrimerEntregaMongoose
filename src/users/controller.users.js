@@ -1,5 +1,5 @@
 const { Router } = require('express')
-// const Users = require('../models/users')
+const Users = require('../models/users')
 
 const router = Router()
 
@@ -11,37 +11,44 @@ const router = Router()
 //         res.json({error})
 //     }
 // })
-
-router.get('/', (req,res) => {
+router.get('/create', (req,res) => {
     res.render('createUser.handlebars')
 })
 
-
-router.post('/', (req,res) => {
-
-    UsersDao.create(req.body)
-    res.json({ message: 'Usuario creado' } )
+router.get('/', async (req,res) => {
+    const users = await Users.find()
+    res.json({ message: users })
 })
 
-// router.post('/' , async (req,res) =>{
-//     try {
-//         const {name,lastname,email,age} = req.body
-    
-//         const userInfo = {
-//             name,
-//             lastname,
-//             email,
-//             age,
-//         }
-    
-//         const newUser = await Users.create(userInfo)
-    
-//         res.json({message: newUser }) // NOS DA LA INFORMACION DEL USUARIO CREADO JUNTO CON EL ID DE MONGO
 
-//     } catch (error) {
-//         res.json({error})
-//     }
+// router.get('/', async (req,res) => {
+//     const users = await Users.find()
+//     res.json({message: users})
 // })
+// router.post('/', (req,res) => {
+//     console.log(req.body)
+//     // UsersDao.create(req.body)
+//     res.json({ message: 'Usuario creado' } )
+// })
+
+router.post('/create' , async (req,res) =>{
+    try {
+        const {name,lastname,email,password} = req.body
+
+        const newUserInfo = {
+            name,
+            lastname,
+            email,
+            password
+        }
+        const newUser = await Users.create(newUserInfo)
+    
+        res.json({message: newUser }) // NOS DA LA INFORMACION DEL USUARIO CREADO JUNTO CON EL ID DE MONGO
+
+    } catch (error) {
+        res.json({error})
+    }
+})
 
 
 
@@ -71,4 +78,4 @@ router.post('/', (req,res) => {
 //     }
 // })
 
-module.exports= router
+module.exports = router

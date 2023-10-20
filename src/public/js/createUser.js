@@ -11,7 +11,7 @@ form.addEventListener('submit', event => {
 
     data.forEach((value, key) => obj[key] = value) // RECIBE (value, key)
 
-    fetch('/users', {
+    fetch('/create', {
         headers: { // INFORMACION PARA EL CONTROLADOR(api)
             'Content-Type': 'application/json', // SE ESTA ENVIANDO EN EL BODY FORMATO JSON
         },
@@ -19,6 +19,6 @@ form.addEventListener('submit', event => {
         body: JSON.stringify(obj),// EN LA RED SE COMUNICA POR JSON, NO POR JS
     })
     .then(response => response.json())
-    .then(data => data.innerHTML)
+    .then(data => (console.log(response) = data.message))
     .catch(error => console.log(error))
 })

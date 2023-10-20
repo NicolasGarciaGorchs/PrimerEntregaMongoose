@@ -10,7 +10,7 @@ const usersSchema = new mongoose.Schema({ // LOS PARAMETROS SE MANDAN A mongoose
         type: String,
         unique: true // SI ALGUIEN QUIERE USAR EL MISMO EMAIL NO PUEDE
     },
-    age: Number,
+    password: String,
     status: {
         type: Boolean,
         default : true,

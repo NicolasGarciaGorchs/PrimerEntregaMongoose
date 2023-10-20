@@ -1,21 +1,19 @@
 <form id="datosFormulario">
-    <label>Nombre</label>
-    <input type="text" name="name" autocomplete="on" id="">
+    <label for="nombre">Nombre</label>
+    <input type="text" name="name" autocomplete="on" id="nombre">
 
-    <label>Apellido</label>
-    <input type="text" name="lastname" autocomplete="on" id="">
+    <label for="apellido">Apellido</label>
+    <input type="text" name="lastname" autocomplete="on" id="apellido">
 
-    <label>E-Mail</label>
-    <input type="email" name="email" autocomplete="on" id="" >
+    <label for="email">E-Mail</label>
+    <input type="email" name="email" autocomplete="on" id="email">
 
-    <label>Contrasela</label>
-    <input type="password" name="password" autocomplete="on" id="">
+    <label for="contraseña">Contraseña</label>
+    <input type="password" name="password" autocomplete="on" id="contraseña">
 
     <button type="submit">Crear Usuario</button>
-
-    <p id="response"></p>
 </form>
 
+    {{!-- <p id="response"></p> --}}
 
-
-<script src="/js/createUser.js">
+<script src="../public/js/createUser.js">
