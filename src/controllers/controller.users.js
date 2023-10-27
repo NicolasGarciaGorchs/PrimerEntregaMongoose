@@ -1,5 +1,7 @@
 const { Router } = require('express')
-const Users = require('../models/users')
+const UsersDao = require('../DAOs/dbManagers/UsersDao')
+
+const Users = new UsersDao()
 
 const router = Router()
 
@@ -16,7 +18,7 @@ router.get('/create', (req,res) => {
 })
 
 router.get('/', async (req,res) => {
-    const users = await Users.find()
+    const users = await Users.findAll()
     res.json({ message: users })
 })
 
@@ -41,7 +43,7 @@ router.post('/create' , async (req,res) =>{
             email,
             password
         }
-        const newUser = await Users.create(newUserInfo)
+        const newUser = await Users.insertOne(newUserInfo)
     
         res.json({message: newUser }) // NOS DA LA INFORMACION DEL USUARIO CREADO JUNTO CON EL ID DE MONGO
 
